@@ -1,0 +1,13 @@
+
+[tool.pyflow]
+name = ""
+py_version = "3.9"
+version = "0.1.0"
+
+[tool.pyflow.scripts]
+
+[tool.pyflow.dependencies]
+django = "^3.2.5"
+
+[tool.pyflow.dev-dependencies]
+
