@@ -1,8 +1,8 @@
 [[package]]
-id = 2
-name = "sqlparse"
-version = "0.4.1"
-source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
+id = 4
+name = "asgiref"
+version = "3.4.1"
+source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
 dependencies = []
 
 [[package]]
@@ -20,10 +20,10 @@ source = "pypi+https://pypi.org/pypi/Django/3.2.5/json"
 dependencies = ["sqlparse 0.4.1 pypi+https://pypi.org/pypi/sqlparse/0.4.1/json", "asgiref 3.4.1 pypi+https://pypi.org/pypi/asgiref/3.4.1/json", "pytz 2016.2 pypi+https://pypi.org/pypi/pytz/2016.2/json"]
 
 [[package]]
-id = 4
-name = "asgiref"
-version = "3.4.1"
-source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
+id = 2
+name = "sqlparse"
+version = "0.4.1"
+source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
 dependencies = []
 
 [metadata]
