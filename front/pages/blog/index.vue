@@ -1,14 +1,12 @@
 <template>
-  <div class="main">
-    <h1>blog</h1>
-  </div>
+  <h1>blog</h1>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    selectedItem: 2
-  })
+  head: {
+    title: 'ブログ'
+  }
 }
 </script>
 

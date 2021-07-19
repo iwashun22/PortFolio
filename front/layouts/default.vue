@@ -10,6 +10,16 @@
         <a href="/">広瀬 エイトル</a>
       </v-toolbar-title>
       <v-spacer />
+      <v-text-field
+        v-if="$route.name == 'blog'"
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="記事を検索"
+        single-line
+        hide-details
+        width="30vw"
+        class="blog-search"
+      />
       <v-btn
         icon
         class="counter-btn"
@@ -17,7 +27,7 @@
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <p class="counter">
-        2302
+        0
       </p>
       <v-app-bar-nav-icon
         @click="drawer = true"
@@ -27,9 +37,9 @@
       v-model="drawer"
       fixed
       right
-      dark
       temporary
       width="60vw"
+      dark
     >
       <v-list flat>
         <v-list-item-group
@@ -43,9 +53,7 @@
               :key="i"
               href="/"
             >
-              <v-list-item
-                @click="selectedItem = i"
-              >
+              <v-list-item>
                 <v-list-item-icon>
                   <v-icon v-text="item.icon" />
                 </v-list-item-icon>
@@ -58,7 +66,6 @@
               v-else
               :key="i"
               :to="item.to"
-              @click="selectedItem = i"
             >
               <v-list-item-icon>
                 <v-icon v-text="item.icon" />
@@ -89,18 +96,18 @@ export default {
       },
       {
         icon: 'mdi-star',
-        text: 'Star',
+        text: '制作物',
+        to: '/created'
+      },
+      {
+        icon: 'mdi-fountain-pen',
+        text: 'ブログ',
         to: '/blog'
       },
       {
-        icon: 'mdi-send',
-        text: 'Send',
-        to: '/blog'
-      },
-      {
-        icon: 'mdi-email-open',
-        text: 'Drafts',
-        to: '/blog'
+        icon: 'mdi-bell-ring',
+        text: 'お知らせ',
+        to: '/notification'
       }
     ]
   })
@@ -161,8 +168,16 @@ header {
   margin-right: 30px;
 }
 
+.blog-search {
+  max-width: 280px;
+  margin-right: 20px;
+}
+
 .v-navigation-drawer {
   max-width: 300px;
+  border: none;
+  box-shadow: none;
+  background: #222 !important;
 
   .v-list {
     padding: 0;
@@ -172,6 +187,17 @@ header {
       justify-content: space-between;
       text-align: center;
     }
+
+    .v-list-item__content,
+    .v-list-item__icon {
+      font-weight: bolder;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .blog-search {
+    display: none;
   }
 }
 

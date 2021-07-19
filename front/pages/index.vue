@@ -13,9 +13,26 @@
 
 <script>
 export default {
-  data: () => ({
-    model: 0
-  })
+  head: {
+    titleTemplate: '広瀬エイトル - %s',
+    title: 'Main',
+    htmlAttrs: {
+      lang: 'ja'
+    },
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      { src: 'particles.js', defer: true },
+      { src: 'settings.js', defer: true }
+    ]
+  }
 }
 </script>
 
