@@ -54,7 +54,7 @@ particlesJS('background', {
 
         //--動きの設定----------
         "move": {
-            "speed": 10, //シェイプの動くスピード
+            "speed": 5, //シェイプの動くスピード
             "straight": false, //個々のシェイプの動きを止めるか否か
             "direction": "none", //エリア全体の動き(none、top、top-right、right、bottom-right、bottom、bottom-left、left、top-leftより選択)
             "out_mode": "out" //エリア外に出たシェイプの動き(out、bounceより選択)

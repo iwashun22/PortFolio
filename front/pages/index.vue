@@ -4,17 +4,19 @@
     <div class="background-inner">
       <div class="myinfo-case">
         <div class="img" />
-        <h1 id="scroll">広瀬 エイトル</h1>
+        <h1>広瀬 エイトル</h1>
       </div>
     </div>
-    <div class="test">
-
-    </div>
+    <div class="test" />
   </div>
 </template>
 
 <script>
-
+export default {
+  data: () => ({
+    model: 0
+  })
+}
 </script>
 
 <style lang="scss">
@@ -31,7 +33,7 @@
   top: 0;
   height: 100vh;
   width: 100%;
-  z-index: 1;
+  z-index: -1;
   background-color: lighten(#00adb5, 2%);
 }
 
@@ -54,7 +56,7 @@
     justify-content: center;
 
     * {
-      z-index: 2;
+      z-index: 1;
       user-select: none;
     }
 
@@ -71,7 +73,7 @@
       text-align: center;
       font-weight: bolder;
       color: #eee;
-      margin-top: 1px;
+      margin-top: 20px;
     }
   }
 }
