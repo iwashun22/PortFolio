@@ -18,7 +18,7 @@ particlesJS('background', {
             },
         },
         "color": {
-            "value": "#AAD8D3" //シェイプの色
+            "value": "#393E46" //シェイプの色
         },
         "opacity": {
             "value": 1, //シェイプの透明度

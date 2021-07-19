@@ -4,8 +4,11 @@
     <div class="background-inner">
       <div class="myinfo-case">
         <div class="img" />
-        <h1>広瀬 エイトル</h1>
+        <h1 id="scroll">広瀬 エイトル</h1>
       </div>
+    </div>
+    <div class="test">
+
     </div>
   </div>
 </template>
@@ -15,13 +18,21 @@
 </script>
 
 <style lang="scss">
+
+.test {
+  height: 1600px;
+  width: 100%;
+  margin-top: 100vh;
+  background-color: #393e46;
+}
+
 #background {
   position: absolute;
   top: 0;
   height: 100vh;
   width: 100%;
-  background: #393e46;
   z-index: 1;
+  background-color: lighten(#00adb5, 2%);
 }
 
 .background-inner {
