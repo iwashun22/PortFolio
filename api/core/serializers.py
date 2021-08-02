@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Names
+from .models import SiteLikes
 
 
-class NamesSerializer(serializers.ModelSerializer):
+class LikeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Names
-        fields = ("id", "name")
+        model = SiteLikes
+        fields = ("id", "love")

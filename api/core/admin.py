@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Names  # add this
-# Register your models here.
+from .models import SiteLikes
 
-admin.site.register(Names)  # add this
+admin.site.register(SiteLikes)

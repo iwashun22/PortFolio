@@ -2,9 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import viewsets
-from .serializers import NamesSerializer
-from .models import Names
+from rest_framework import generics
+from .serializers import LikeSerializer
+from .models import SiteLikes
 
-class NamesViewSet(viewsets.ModelViewSet):
-    serializer_class = NamesSerializer
-    queryset = Names.objects.all()
+class LikesViewSet(viewsets.ModelViewSet):
+    serializer_class = LikeSerializer
+    queryset = SiteLikes.objects.all()

@@ -10,24 +10,15 @@
         <a href="/">広瀬 エイトル</a>
       </v-toolbar-title>
       <v-spacer />
-      <v-text-field
-        v-if="$route.name == 'blog'"
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="記事を検索"
-        single-line
-        hide-details
-        width="30vw"
-        class="blog-search"
-      />
       <v-btn
         icon
         class="counter-btn"
+        @click="clickHeart"
       >
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <p class="counter">
-        0
+        {{ counter }}
       </p>
       <v-app-bar-nav-icon
         @click="drawer = true"
@@ -48,22 +39,7 @@
           <template
             v-for="(item, i) in items"
           >
-            <a
-              v-if="i == 0"
-              :key="i"
-              href="/"
-            >
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon v-text="item.icon" />
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.text" />
-                </v-list-item-content>
-              </v-list-item>
-            </a>
             <v-list-item
-              v-else
               :key="i"
               :to="item.to"
             >
@@ -74,7 +50,7 @@
                 <v-list-item-title v-text="item.text" />
               </v-list-item-content>
             </v-list-item>
-            <v-divider v-if="i !== items.length - 1" :key="i" />
+            <v-divider v-if="i !== items.length - 1" :key="item.to" />
           </template>
         </v-list-item-group>
       </v-list>
@@ -85,37 +61,65 @@
 
 <script>
 export default {
-  data: () => ({
-    drawer: false,
-    selectedItem: 0,
-    items: [
-      {
-        icon: 'mdi-account-box',
-        text: 'メインページ',
-        to: '/'
-      },
-      {
-        icon: 'mdi-star',
-        text: '制作物',
-        to: '/created'
-      },
-      {
-        icon: 'mdi-fountain-pen',
-        text: 'ブログ',
-        to: '/blog'
-      },
-      {
-        icon: 'mdi-bell-ring',
-        text: 'お知らせ',
-        to: '/notification'
-      }
-    ]
-  })
+  data () {
+    return {
+      drawer: false,
+      selectedItem: 0,
+      items: [
+        {
+          icon: 'mdi-home',
+          text: 'メインページ',
+          to: '/'
+        },
+        {
+          icon: 'mdi-star',
+          text: '制作物',
+          to: '/created'
+        },
+        {
+          icon: 'mdi-fountain-pen',
+          text: 'ブログ',
+          to: '/blog'
+        },
+        {
+          icon: 'mdi-bell-ring',
+          text: 'お知らせ',
+          to: '/notification'
+        },
+        {
+          icon: 'mdi-account-box',
+          text: 'お問い合わせ',
+          to: '/contact'
+        }
+      ],
+      counter: 'loading'
+    }
+  },
+  async created () {
+    await this.$axios.get(this.$axios.defaults.baseURL + '/sitelikes/1').then((response) => {
+      this.counter = response.data.love
+    })
+  },
+  methods: {
+    async clickHeart () {
+      await this.$axios.$put(
+        this.$axios.defaults.baseURL + '/sitelikes/1/',
+        {
+          love: (this.counter + 1)
+        }
+      )
+      await this.$axios.get(this.$axios.defaults.baseURL + '/sitelikes/1').then((response) => {
+        this.counter = response.data.love
+      })
+      return 0
+    }
+  }
 }
 </script>
 
 <style lang="scss">
 
+// 保留
 // ::-webkit-scrollbar {
 //   width: 13px;
 //   background-color: #393e46;
