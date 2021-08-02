@@ -96,7 +96,7 @@ export default {
     }
   },
   async created () {
-    await this.$axios.get(this.$axios.defaults.baseURL + '/sitelikes/1').then((response) => {
+    await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
       this.counter = response.data.love
     })
   },
@@ -108,7 +108,7 @@ export default {
           love: (this.counter + 1)
         }
       )
-      await this.$axios.get(this.$axios.defaults.baseURL + '/sitelikes/1').then((response) => {
+      await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
         this.counter = response.data.love
       })
       return 0
