@@ -103,7 +103,7 @@ export default {
   methods: {
     async clickHeart () {
       await this.$axios.$put(
-        this.$axios.defaults.baseURL + '/sitelikes/1/',
+        this.$axios.defaults.baseURL + 'api/sitelikes/1/',
         {
           love: (this.counter + 1)
         }
