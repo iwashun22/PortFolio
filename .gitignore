@@ -12,3 +12,4 @@ __pypackages__/
 # Project ignores
 .DS_Store
 .env
+db.sqlite3
