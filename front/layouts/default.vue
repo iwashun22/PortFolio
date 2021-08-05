@@ -7,7 +7,9 @@
       height="68"
     >
       <v-toolbar-title>
-        <a href="/">広瀬 エイトル</a>
+        <NuxtLink to="/">
+          広瀬 エイトル
+        </NuxtLink>
       </v-toolbar-title>
       <v-spacer />
       <v-btn
@@ -96,22 +98,29 @@ export default {
     }
   },
   async created () {
-    await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
-      this.counter = response.data.love
-    })
-  },
-  methods: {
-    async clickHeart () {
-      await this.$axios.$put(
-        this.$axios.defaults.baseURL + 'api/sitelikes/1/',
-        {
-          love: (this.counter + 1)
-        }
-      )
+    try {
       await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
         this.counter = response.data.love
       })
-      return 0
+    } catch (err) {
+      this.counter = 'Error'
+    }
+  },
+  methods: {
+    async clickHeart () {
+      try {
+        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
+          this.counter = response.data.love
+        })
+        await this.$axios.$put(
+          this.$axios.defaults.baseURL + 'api/sitelikes/1/',
+          {
+            love: (this.counter + 1)
+          }
+        )
+      } catch (err) {
+        this.counter = 'Error'
+      }
     }
   }
 }
@@ -130,7 +139,7 @@ export default {
 // }
 
 body {
-  background-color: #393e46;
+  background-color: #1e1e1e;
 }
 
 a {
@@ -148,6 +157,15 @@ a {
     color: #eee;
     text-decoration: none;
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'ヒラギノ角ゴ StdN', 'Hiragino Kaku Gothic StdN', 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
 }
 
 header {

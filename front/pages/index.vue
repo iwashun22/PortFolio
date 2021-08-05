@@ -4,7 +4,7 @@
     <div class="background-inner">
       <div class="myinfo-case">
         <div class="img" />
-        <h1>広瀬 エイトル</h1>
+        <h2>広瀬 エイトル</h2>
         <div class="icons">
           <a href="">
             <img src="~/static/sns/github.svg" alt="">
@@ -24,7 +24,17 @@
         </div>
       </div>
     </div>
-    <div class="test" />
+    <div class="first-main case first-case">
+      <h1 class="title">
+        About Me
+      </h1>
+      <div class="aboutme-info-case">
+        <div class="img" />
+        <div class="msg">
+          <p>テストストストテストストストテストストストテストストストテストストストテストストストテストストストテストストストテストストストテストストストテストストスト</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,12 +66,55 @@ export default {
 </script>
 
 <style lang="scss">
+.first-case {
+  .aboutme-info-case {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
-.test {
-  height: 1600px;
+    .msg {
+      max-width: 300px;
+
+      p {
+        padding: 14px;
+      }
+    }
+
+    .img {
+      width: 240px !important;
+      height: 240px !important;
+      background-image: url(~static/icon.png);
+      background-size: cover;
+      background-position: center center;
+      border-radius: 50%;
+      margin: 30px 0;
+    }
+  }
+}
+
+.title {
+  border-bottom: solid 3px white;
+  width: fit-content;
+  padding: 6px 20px;
+  margin: 0 30px;
+}
+
+.first-main {
   width: 100%;
-  margin-top: 100vh;
-  background-color: #393e46;
+  height: 600px;
+  background-color: #1e1e1e;
+  margin: calc(100vh + 30px) auto 20px auto;
+  max-width: 980px;
+  border-radius: 0 !important;
+
+  h1 {
+    color: white;
+  }
+}
+
+.case {
+  display: flex;
+  flex-direction: column;
 }
 
 #background {
@@ -124,16 +177,38 @@ export default {
       border-radius: 50%;
     }
 
-    h1 {
+    h2 {
       text-align: center;
-      font-weight: bolder;
+      font-weight: lighter;
       color: #eee;
       margin-top: 20px;
+      font-size: 28px;
     }
   }
 }
 
 @media screen and (max-width: 580px) {
+  .aboutme-info-case {
+    flex-direction: column !important;
+    align-items: center;
+    max-width: initial;
+
+    .img {
+      max-width: initial !important;
+      margin: 30px auto !important;
+    }
+
+    .msg {
+      width: 100%;
+      max-width: 90vw !important;
+
+      p {
+        width: 100%;
+        max-width: initial !important;
+      }
+    }
+  }
+
   .background-inner {
     .myinfo-case {
       width: 280px;
@@ -146,11 +221,17 @@ export default {
     }
   }
 
+  .title {
+    font-size: 1.5rem;
+    padding: 3px 10px;
+    margin: 0 15px;
+  }
+
   .icons {
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-self: center;
 
     img {
