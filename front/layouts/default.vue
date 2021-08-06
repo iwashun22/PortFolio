@@ -31,7 +31,7 @@
       fixed
       right
       temporary
-      width="60vw"
+      width="80vw"
       dark
     >
       <v-list flat>
@@ -118,6 +118,9 @@ export default {
             love: (this.counter + 1)
           }
         )
+        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
+          this.counter = response.data.love
+        })
       } catch (err) {
         this.counter = 'Error'
       }
