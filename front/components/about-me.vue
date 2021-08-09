@@ -27,7 +27,6 @@
 
 .first-main {
   width: 100%;
-  background-color: #1e1e1e;
   border-radius: 0 !important;
   margin: calc(100vh + 30px) auto 20px auto;
   max-width: 980px;
@@ -50,7 +49,7 @@
     margin: 15px 0;
 
     .msg {
-      max-width: vw;
+      max-width: 48vw;
       margin: auto 0;
       color: white;
       line-height: 2rem;
@@ -63,10 +62,10 @@
     }
 
     .img {
-      width: 40vw !important;
-      height: 40vw !important;
-      max-width: 150px;
-      max-height: 150px;
+      width: 12vw !important;
+      height: 12vw !important;
+      min-width: 150px !important;
+      min-height: 150px !important;
       background-image: url(~static/icon.png);
       background-size: cover;
       background-position: center center;
