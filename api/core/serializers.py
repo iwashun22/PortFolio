@@ -7,10 +7,12 @@ class LikeSerializer(serializers.ModelSerializer):
         model = SiteLikes
         fields = ("id", "love")
 
+
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ("id", "name")
+
 
 class CareerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +26,6 @@ class CareerSerializer(serializers.ModelSerializer):
             "EndWork",
             "tags",
             "created_at",
-            "updated_at"
+            "updated_at",
         )
         depth = 1

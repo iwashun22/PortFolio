@@ -4,13 +4,16 @@ from rest_framework.response import Response
 from .serializers import LikeSerializer, CareerSerializer, TagSerializer
 from .models import SiteLikes, Career, Tag
 
+
 class LikesViewSet(viewsets.ModelViewSet):
     serializer_class = LikeSerializer
     queryset = SiteLikes.objects.all()
 
+
 class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
+
 
 class CareerViewSet(viewsets.ModelViewSet):
     serializer_class = CareerSerializer
@@ -22,7 +25,7 @@ class CareerViewSet(viewsets.ModelViewSet):
     def min_career(self, request):
         min_career = Career.objects.all().order_by("StartWork")[0:3]
         page = self.paginate_queryset(min_career)
-        
+
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
