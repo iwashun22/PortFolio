@@ -67,6 +67,7 @@ export default {
     return {
       drawer: false,
       selectedItem: 0,
+      ip: [],
       items: [
         {
           icon: 'mdi-home',

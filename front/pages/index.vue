@@ -56,6 +56,7 @@ import Career from '~/components/career.vue'
 if (process.client) {
   require('particles.js')
 }
+
 export default {
   components: {
     About,
