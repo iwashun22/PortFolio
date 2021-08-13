@@ -5,7 +5,7 @@ from .models import SiteLikes, Career, Tag
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteLikes
-        fields = ("id", "love")
+        fields = ("__all__")
 
 
 class TagSerializer(serializers.ModelSerializer):

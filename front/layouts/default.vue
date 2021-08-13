@@ -19,6 +19,14 @@
       >
         <v-icon>mdi-heart</v-icon>
       </v-btn>
+      <template v-if="loading">
+        <v-progress-circular
+          size="24"
+          indeterminate
+          color="primary"
+          class="loader"
+        />
+      </template>
       <p class="counter">
         {{ counter }}
       </p>
@@ -67,7 +75,7 @@ export default {
     return {
       drawer: false,
       selectedItem: 0,
-      ip: [],
+      loading: true,
       items: [
         {
           icon: 'mdi-home',
@@ -95,32 +103,29 @@ export default {
           to: '/contact'
         }
       ],
-      counter: 'loading'
+      counter: ''
     }
   },
   async created () {
     try {
-      await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
-        this.counter = response.data.love
+      await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
+        this.counter = response.data.counter
       })
     } catch (err) {
       this.counter = 'Error'
     }
+    this.loading = false
   },
   methods: {
     async clickHeart () {
       try {
-        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
-          this.counter = response.data.love
+        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
+          this.counter = response.data.counter
         })
-        await this.$axios.$put(
-          this.$axios.defaults.baseURL + 'api/sitelikes/1/',
-          {
-            love: (this.counter + 1)
-          }
-        )
-        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/1').then((response) => {
-          this.counter = response.data.love
+        await this.$axios.$post(
+          this.$axios.defaults.baseURL + 'api/sitelikes/', null)
+        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
+          this.counter = response.data.counter
         })
       } catch (err) {
         this.counter = 'Error'
@@ -231,7 +236,8 @@ header {
 @media screen and (max-width: 580px) {
   header {
     .counter,
-    .counter-btn {
+    .counter-btn,
+    .loader {
       display: none;
     }
   }
