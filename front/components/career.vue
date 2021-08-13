@@ -64,7 +64,7 @@
           >
             すべて見る
           </NuxtLink>
-          <NuxtLink :to="{ path: `career/${ item.id }`}">
+          <NuxtLink :to="{ path: `/career/${ item.id }`}">
             詳しく見る
           </NuxtLink>
         </div>
@@ -86,16 +86,6 @@ export default {
   async created () {
     if (this.$route.path === '/career') {
       this.career = await this.$axios.get(this.$axios.defaults.baseURL + 'api/career/')
-        .catch((err) => {
-          this.loading = false
-          this.check = true
-          this.err = err
-        }).finally(() => {
-          this.loading = false
-          this.check = false
-        })
-    } else if (/d/.test(`/career/${this.$route.params.id}`)) {
-      this.career = await this.$axios.get(this.$axios.defaults.baseURL + `api/career/${this.$route.params.id}`)
         .catch((err) => {
           this.loading = false
           this.check = true
