@@ -19,6 +19,6 @@ export default {
 
 <style lang="scss">
 #__layout {
-  margin-top: 58px;
+  margin-top: 68px;
 }
 </style>

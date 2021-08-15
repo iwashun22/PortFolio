@@ -8,7 +8,6 @@
         <v-progress-circular
           size="50"
           indeterminate
-          color="purple"
           class="loader"
         />
       </template>
@@ -35,7 +34,7 @@
         >
           <p
             v-for="tag in item.tags"
-            :key="tag"
+            :key="tag.id"
             class="tag"
           >
             {{ tag.name }}
@@ -120,6 +119,7 @@ export default {
   padding: 6px 20px;
   margin: 30px 30px 0 30px !important;
   color: white;
+  font-weight: bolder;
 }
 
 .case {
@@ -147,6 +147,7 @@ export default {
   .v-card__title {
     font-size: 200%;
     padding: 40px 60px 0 60px;
+    font-weight: bolder;
   }
 
   .tag-case {
@@ -243,7 +244,7 @@ export default {
       padding: 0;
 
       a {
-        margin: 0 30px;
+        margin: 10px 30px;
       }
     }
 

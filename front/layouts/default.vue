@@ -83,6 +83,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-account-box',
+          text: 'キャリア',
+          to: '/career'
+        },
+        {
           icon: 'mdi-star',
           text: '制作物',
           to: '/created'
@@ -98,7 +103,7 @@ export default {
           to: '/notification'
         },
         {
-          icon: 'mdi-account-box',
+          icon: 'mdi-alert-circle',
           text: 'お問い合わせ',
           to: '/contact'
         }

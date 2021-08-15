@@ -46,6 +46,7 @@
     </div>
     <About />
     <Career />
+    <Skills />
   </div>
 </template>
 
@@ -53,6 +54,8 @@
 import bubble from '~/assets/js/particles/bubble.js'
 import About from '~/components/about-me.vue'
 import Career from '~/components/career.vue'
+import Skills from '~/components/skills.vue'
+
 if (process.client) {
   require('particles.js')
 }
@@ -60,7 +63,8 @@ if (process.client) {
 export default {
   components: {
     About,
-    Career
+    Career,
+    Skills
   },
   head: {
     titleTemplate: '広瀬エイトル - %s',
