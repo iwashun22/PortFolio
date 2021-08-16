@@ -19,7 +19,7 @@
       tile
       dark
     >
-      <h1 class="title">
+      <h1 class="career-title">
         {{ career.WorkSpace }}
       </h1>
       <div class="website-case">
@@ -87,7 +87,7 @@ export default {
     }
   },
   head: {
-    title: 'キャリア詳しく'
+    title: '詳しく'
   },
   async created () {
     this.career = await this.$axios.get(this.$axios.defaults.baseURL + `api/career/${this.$route.params.id}`)
@@ -126,14 +126,14 @@ export default {
   width: 100%;
   max-width: 1080px;
   display: flex;
-  margin: 50px auto;
+  margin: 50px auto 0 auto;
 
   .v-card {
     width: 100%;
     margin: 50px 0;
     padding: 0 80px;
 
-    .title {
+    .career-title {
       margin: 50px 0 15px 0;
     }
 
@@ -164,6 +164,7 @@ export default {
         font-size: 80%;
         background-color: rgb(0, 0, 0);
         color: #aad8d3;
+        font-weight: bold;
 
         &:hover {
           color: #00adb5;
@@ -207,6 +208,10 @@ export default {
 
     .title {
       font-size: 32px !important;
+    }
+
+    .link {
+      padding-right: 20px;
     }
   }
 }

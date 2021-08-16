@@ -135,10 +135,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px auto;
+  margin: 30px auto 0 auto;
 
   .v-card {
-    margin: 14px 0;
+    margin: 14px 0 0 0;
     display: flex !important;
     flex-direction: column;
     max-height: 600px;
@@ -203,15 +203,7 @@ export default {
   color: white;
 }
 
-@media screen and (max-width: 580px) {
-  .title {
-    font-size: 1.5rem;
-    padding: 3px 10px;
-    margin: 0 15px;
-  }
-}
-
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 1000px) {
   .inner-case {
     .v-card {
       margin: 14px 0;
@@ -219,21 +211,22 @@ export default {
 
     .v-card__title {
       font-size: 170%;
-      padding: 30px 20px 0 20px;
+      padding: 30px 10px 0 10px;
     }
 
     .tag-case {
-      padding: 15px 20px;
+      padding: 15px 10px;
 
       .tag {
         padding: 3px 6px;
         margin: 3px 3px;
         font-size: 80%;
+        font-weight: bold;
       }
     }
 
     .content-case {
-      margin: 20px 20px;
+      margin: 20px 10px;
       font-size: 16px;
       height: 100%;
     }
@@ -244,14 +237,15 @@ export default {
       padding: 0;
 
       a {
-        margin: 10px 30px;
+        margin: 0 !important;
+        padding: 0 6px !important;
       }
     }
 
     .date {
       padding: 0;
       font-size: 70%;
-      margin: 0 30px;
+      margin: 0 15px;
     }
   }
 }
