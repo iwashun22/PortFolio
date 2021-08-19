@@ -27,10 +27,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",  # add this
-    "corsheaders",  # add this
-    "core",  # add this
+    "rest_framework",
+    "corsheaders",
+    "core"
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
