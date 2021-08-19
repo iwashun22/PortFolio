@@ -6,41 +6,20 @@
         <div class="img" />
         <h2>広瀬 エイトル</h2>
         <div class="icons">
-          <a href="https://github.com/HEKUCHAN">
-            <img
-              src="~/static/sns/github.svg"
-              alt=""
-              class="img-1"
-            >
-          </a>
-          <a href="https://www.instagram.com/hirose_heitor/">
-            <img
-              src="~/static/sns/instagram.png"
-              alt=""
-              class="img-2"
-            >
-          </a>
-          <a href="mailto:Heitorhirose@gmail.com">
-            <img
-              src="~/static/sns/mail.svg"
-              alt=""
-              class="img-3"
-            >
-          </a>
-          <a href="https://twitter.com/Heitor_Hirose">
-            <img
-              src="~/static/sns/twitter.svg"
-              alt=""
-              class="img-4"
-            >
-          </a>
-          <a href="https://www.wantedly.com/id/HiroseHeitor">
-            <img
-              src="~/static/sns/wantedly.svg"
-              alt=""
-              class="img-5"
-            >
-          </a>
+          <v-btn
+            v-for="link in links"
+            :key="link.icon"
+            class="mx-4 white--text"
+            icon
+          >
+            <a :href="link.to" target="_blank" rel="noopener noreferrer">
+              <v-icon
+                size="32px"
+              >
+                {{ link.icon }}
+              </v-icon>
+            </a>
+          </v-btn>
         </div>
       </div>
     </div>
@@ -65,6 +44,28 @@ export default {
     About,
     Career,
     Skills
+  },
+  data () {
+    return {
+      links: [
+        {
+          icon: 'mdi-email',
+          to: 'mailto:Heitorhirose@gmail.com'
+        },
+        {
+          icon: 'mdi-twitter',
+          to: 'https://twitter.com/Heitor_Hirose'
+        },
+        {
+          icon: 'mdi-instagram',
+          to: 'https://www.instagram.com/hirose_heitor/'
+        },
+        {
+          icon: 'mdi-github',
+          to: 'https://github.com/HEKUCHAN'
+        }
+      ]
+    }
   },
   head: {
     titleTemplate: '広瀬エイトル - %s',
@@ -96,21 +97,19 @@ export default {
 }
 
 .icons {
-  width: 80%;
+  width: 60%;
   height: 60px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  img {
-    height: 48px;
-    width: 48px;
-    background-color: #eee;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin: auto;
+  .v-btn {
+    .v-btn__content {
+      a {
+        color: white;
+      }
+    }
   }
 }
 
@@ -149,7 +148,8 @@ export default {
     h2 {
       text-align: center;
       font-weight: lighter;
-      color: #eee;
+      font-weight: bold;
+      color: white;
       margin-top: 20px;
       font-size: 28px;
     }

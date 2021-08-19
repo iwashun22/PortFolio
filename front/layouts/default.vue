@@ -66,6 +66,58 @@
       </v-list>
     </v-navigation-drawer>
     <Nuxt />
+    <v-footer
+      dark
+      padless
+    >
+      <v-card
+        flat
+        tile
+        class="indigo lighten-1 white--text text-center"
+        width="100%"
+      >
+        <v-row
+          justify="center"
+          class="footer-links"
+          no-gutters
+        >
+          <v-btn
+            v-for="path in paths"
+            :key="path.name"
+            :to="path.to"
+            color="white"
+            dark
+            text
+            class="my-2"
+          >
+            {{ path.name }}
+          </v-btn>
+        </v-row>
+        <v-card-text class="footer-icons">
+          <v-btn
+            v-for="link in links"
+            :key="link.icon"
+            class="mx-4 white--text"
+            icon
+          >
+            <a :href="link.to" target="_blank" rel="noopener noreferrer">
+              <v-icon
+                size="32px"
+              >
+                {{ link.icon }}
+              </v-icon>
+            </a>
+          </v-btn>
+        </v-card-text>
+        <v-divider />
+
+        <v-card-text class="white--text copyrights">
+          &copy; 2021 — {{ new Date().getFullYear() }} <strong>HiroseHeitor</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
+  </div>
+</template>
   </div>
 </template>
 
@@ -106,6 +158,54 @@ export default {
           icon: 'mdi-alert-circle',
           text: 'お問い合わせ',
           to: '/contact'
+        }
+      ],
+      links: [
+        {
+          icon: 'mdi-email',
+          to: 'mailto:Heitorhirose@gmail.com'
+        },
+        {
+          icon: 'mdi-twitter',
+          to: 'https://twitter.com/Heitor_Hirose'
+        },
+        {
+          icon: 'mdi-instagram',
+          to: 'https://www.instagram.com/hirose_heitor/'
+        },
+        {
+          icon: 'mdi-github',
+          to: 'https://github.com/HEKUCHAN'
+        }
+      ],
+      paths: [
+        {
+          name: 'メインページ',
+          to: '/'
+        },
+        {
+          name: 'キャリア',
+          to: '/career'
+        },
+        {
+          name: '制作者',
+          to: '/created'
+        },
+        {
+          name: 'ブログ',
+          to: '/blog'
+        },
+        {
+          name: 'お知らせ',
+          to: '/notification'
+        },
+        {
+          name: 'お問い合わせ',
+          to: '/contact'
+        },
+        {
+          name: 'Admin',
+          to: '/admin/login'
         }
       ],
       counter: ''
@@ -228,6 +328,34 @@ header {
     .v-list-item__content,
     .v-list-item__icon {
       font-weight: bolder;
+    }
+  }
+}
+
+.v-footer {
+  margin-top: 50px;
+  position: relative;
+  bottom: 0;
+
+  .footer-icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .copyrights {
+    text-align: center;
+  }
+
+  .footer-links {
+    width: fit-content;
+    margin: 15px auto;
+
+    .v-btn {
+      background-color: #1e1e1e !important;
+      margin: 0 10px;
     }
   }
 }
