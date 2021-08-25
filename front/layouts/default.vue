@@ -364,6 +364,12 @@ header {
   .blog-search {
     display: none;
   }
+
+  .v-footer {
+    .footer-links {
+      justify-content: space-around;
+    }
+  }
 }
 
 @media screen and (max-width: 580px) {
@@ -372,6 +378,12 @@ header {
     .counter-btn,
     .loader {
       display: none;
+    }
+  }
+
+  .v-footer {
+    .footer-links {
+      justify-content: space-around;
     }
   }
 }
