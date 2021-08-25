@@ -18,6 +18,19 @@ class Career(models.Model):
     content = models.TextField()
     StartWork = models.DateField()
     EndWork = models.DateField(blank=True, null=True)
-    tags = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, through="TagsCareer")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.WorkSpace
+
+class TagsCareer(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    career = models.ForeignKey(Career, on_delete=models.CASCADE)
+    joined_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.tag.name

@@ -181,7 +181,7 @@ export default {
 
   .link {
     text-align: right;
-    padding: 10px 60px;
+    padding: 15px 60px;
 
     a {
       padding: 0 10px;
@@ -233,7 +233,7 @@ export default {
 
     .link {
       text-align: right;
-      margin: 10px 0;
+      margin: 15px 0;
       padding: 0;
 
       a {
