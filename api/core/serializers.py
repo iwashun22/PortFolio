@@ -1,3 +1,4 @@
+from rest_auth.serializers import LoginSerializer as RestAuthLoginSerializer
 from rest_framework import serializers
 from .models import SiteLikes, Career, Tag
 

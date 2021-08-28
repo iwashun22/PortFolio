@@ -204,7 +204,7 @@ export default {
           to: '/contact'
         },
         {
-          name: 'Admin',
+          name: '管理者',
           to: '/admin/login'
         }
       ],
