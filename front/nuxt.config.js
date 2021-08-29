@@ -45,12 +45,55 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    ['nuxt-log', {
+      // optional : defaults to true if not specified
+      isEnabled: true,
+      // required ['debug', 'info', 'warn', 'error', 'fatal']
+      logLevel: 'debug',
+      // optional : defaults to false if not specified
+      stringifyArguments: false,
+      // optional : defaults to false if not specified
+      showLogLevel: false,
+      // optional : defaults to false if not specified
+      showMethodName: false,
+      // optional : defaults to '|' if not specified
+      separator: '|',
+      // optional : defaults to false if not specified
+      showConsoleColors: false
+    }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.API_URL
+    baseURL: process.env.API_URL,
+  },
+
+  auth: {
+    redirect: {
+      login: '/admin/admin',
+      logout: '/admin/login',
+      callback: false,
+      home: false
+    },
+    user: {
+      property: 'username',
+    },
+    localStorage: false,
+    strategies: {
+      local: {
+        token: {
+          required: false,
+          type: " Token "
+        },
+        endpoints: {
+          login: { url: 'api/login/', method: 'post', propertyName: 'token' },
+          user: { url: '/api/me/', method: 'get' },
+          logout: false
+        }
+      }
+    }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

@@ -90,7 +90,7 @@ export default {
     title: '詳しく'
   },
   async created () {
-    this.career = await this.$axios.get(this.$axios.defaults.baseURL + `api/career/${this.$route.params.id}`)
+    this.career = await this.$axios.get(`api/career/${this.$route.params.id}`)
       .catch((err) => {
         this.loading = false
         this.check = true

@@ -84,7 +84,7 @@ export default {
   },
   async created () {
     if (this.$route.path === '/career') {
-      this.career = await this.$axios.get(this.$axios.defaults.baseURL + 'api/career/')
+      this.career = await this.$axios.get('api/career/')
         .catch((err) => {
           this.loading = false
           this.check = true
@@ -94,7 +94,7 @@ export default {
           this.check = false
         })
     } else {
-      this.career = await this.$axios.get(this.$axios.defaults.baseURL + 'api/career/min_career')
+      this.career = await this.$axios.get('api/career/min_career')
         .catch((err) => {
           this.loading = false
           this.check = true
@@ -181,7 +181,7 @@ export default {
 
   .link {
     text-align: right;
-    padding: 10px 60px;
+    padding: 15px 60px;
 
     a {
       padding: 0 10px;
@@ -233,7 +233,7 @@ export default {
 
     .link {
       text-align: right;
-      margin: 10px 0;
+      margin: 15px 0;
       padding: 0;
 
       a {
@@ -247,6 +247,14 @@ export default {
       font-size: 70%;
       margin: 0 15px;
     }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .title {
+    font-size: 1.5rem;
+    padding: 3px 10px;
+    margin: 0 15px;
   }
 }
 </style>
