@@ -1,58 +1,63 @@
 <template>
   <div class="login-case">
     <v-card
-      tile
+      flat
       dark
-      width="100%"
-      max-width="520"
     >
       <v-card-title>
-        Login
+        <v-icon
+          size="32"
+        >
+          mdi-account-cog
+        </v-icon>
+        <h4 class="fill-width">
+          管理画面にログイン
+        </h4>
       </v-card-title>
-      <div class="login-inner">
-        <v-container>
-          <v-row>
-            <v-col
-              cols="12"
-              sm="12"
-              class="pm"
-            >
-              <v-text-field
-                v-model="form.username"
-                solo
-                label="E-mail"
-                click:clear
-                prepend-icon="mdi-email"
-              />
-              <v-text-field
-                v-model="form.password"
-                :append-icon="form.show ? 'mdi-eye' : 'mdi-eye-off'"
-                solo
-                :type="form.show ? 'text' : 'password'"
-                click:clear
-                label="Password"
-                prepend-icon="mdi-lock"
-                @click:append="form.show = !form.show"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-              sm="12"
-            >
-              <v-btn
-                elevation="5"
-                large
-                x-large
-                color="success"
-                class="btn"
-                @click="loginUser"
-              >
-                ログイン
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
+      <v-row>
+        <v-col
+          cols="10"
+        >
+          <v-text-field
+            v-model="form.username"
+            outlined
+            prepend-inner-icon="mdi-email"
+            placeholder="example@example.com"
+            autocomplete="off"
+            autofocus
+            required
+          />
+        </v-col>
+        <v-col
+          cols="10"
+        >
+          <v-text-field
+            v-model="form.password"
+            :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="form.passwordShow ? 'text' : 'password'"
+            outlined
+            prepend-inner-icon="mdi-lock"
+            placeholder="パスワード"
+            autofocus
+            autocomplete="off"
+            required
+            @click:append="form.passwordShow = !form.passwordShow"
+          />
+        </v-col>
+        <v-col
+          cols="10"
+          class="login-btn"
+        >
+          <v-btn
+            tile
+            block
+            x-large
+            color="primary"
+          >
+            ログイン
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-card>
   </div>
 </template>
@@ -69,7 +74,7 @@ export default {
       form: {
         username: '',
         password: '',
-        show: false
+        passwordShow: false
       }
     }
   },
@@ -100,43 +105,56 @@ export default {
 }
 
 .login-case {
+  max-width: 500px;
+  width: 100%;
+  height: initial !important;
   display: flex;
+  margin: 120px auto;
 
   .v-card {
-    margin: 60px auto calc((100vh - 450px) / 4) auto;
+    width: 100%;
     display: flex;
+    margin: 0 auto;
+    padding: 30px 0 60px 0;
+    max-width: 520px;
     flex-direction: column;
-    background-color: #000;
-
-    .v-card__title {
-      justify-content: center;
-      text-align: center;
-      width: fit-content;
-      font-size: 38px;
-      font-weight: bolder;
-      margin: 25px auto;
-      padding: 0;
-    }
 
     .row {
       justify-content: center;
+    }
 
-      .btn {
-        margin: 5px 0;
+    .col {
+      padding: 0 12px;
+    }
+
+    .login-btn {
+      .v-btn {
+        background-color: #1976d2 !important;
       }
     }
 
-    .pm {
-      padding: 0 20px !important;
-    }
+    .v-card__title {
+      justify-content: center;
+      padding: 28px 0 60px 0;
+      font-size: 24px;
+      color: #eee;
 
-    .login-inner {
-      position: relative;
+      i {
+        margin: 10px 10px;
+      }
     }
 
     .v-input {
       .v-input__control {
-        margin: 0 20px;
+        .v-input__slot {
+          .primary--text {
+            color: #1976d2 !important;
+          }
+
+          .v-input__prepend-inner {
+            margin: auto 10px auto 0;
+          }
+        }
       }
     }
   }

@@ -349,7 +349,11 @@ header {
 
     .v-btn {
       background-color: #1e1e1e !important;
-      margin: 0 10px;
+      margin: 5px 10px;
+    }
+
+    .v-btn--active {
+      font-weight: bolder;
     }
   }
 }
