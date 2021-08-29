@@ -53,6 +53,7 @@
             block
             x-large
             color="primary"
+            @click="loginUser"
           >
             ログイン
           </v-btn>
