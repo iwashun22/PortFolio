@@ -84,7 +84,6 @@ export default {
           password: this.form.password
         }
       }).then(() => {
-        this.$toast.success('Logged In!')
         location.reload()
       }).catch(() => {
         location.reload()

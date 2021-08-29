@@ -30,4 +30,12 @@
   width: 100%;
   max-width: 980px;
 }
+
+@media screen and (max-width: 580px) {
+  .title {
+    font-size: 1.5rem;
+    padding: 3px 10px;
+    margin: 0 15px;
+  }
+}
 </style>

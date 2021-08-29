@@ -118,8 +118,6 @@
     </v-footer>
   </div>
 </template>
-  </div>
-</template>
 
 <script>
 export default {
@@ -363,7 +361,14 @@ header {
 
   .v-footer {
     .footer-links {
-      justify-content: space-around;
+      justify-content: center;
+      align-self: center;
+
+      .v-btn {
+        min-width: initial !important;
+        width: calc(100vw / 5) !important;
+        padding: 25px 16px !important;
+      }
     }
   }
 }
@@ -379,7 +384,14 @@ header {
 
   .v-footer {
     .footer-links {
-      justify-content: space-around;
+      justify-content: center;
+      align-self: center;
+
+      .v-btn {
+        min-width: initial !important;
+        width: 80% !important;
+        padding: 25px 16px !important;
+      }
     }
   }
 }
