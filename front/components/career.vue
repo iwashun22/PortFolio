@@ -84,7 +84,7 @@ export default {
   },
   async created () {
     if (this.$route.path === '/career') {
-      this.career = await this.$axios.get(this.$axios.defaults.baseURL + 'api/career/')
+      this.career = await this.$axios.get('api/career/')
         .catch((err) => {
           this.loading = false
           this.check = true
@@ -94,7 +94,7 @@ export default {
           this.check = false
         })
     } else {
-      this.career = await this.$axios.get(this.$axios.defaults.baseURL + 'api/career/min_career')
+      this.career = await this.$axios.get('api/career/min_career')
         .catch((err) => {
           this.loading = false
           this.check = true

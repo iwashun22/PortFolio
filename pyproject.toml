@@ -1,6 +1,6 @@
 
 [tool.pyflow]
-py_version = "3.8"
+py_version = "3.9"
 version = "0.1.0"
 authors = ["HEKUCHAN <Heitorhirose@gmail.com>"]
 

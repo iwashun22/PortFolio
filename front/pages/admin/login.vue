@@ -18,14 +18,14 @@
               class="pm"
             >
               <v-text-field
-                v-model="form.email"
+                v-model="form.username"
                 solo
                 label="E-mail"
                 click:clear
                 prepend-icon="mdi-email"
               />
               <v-text-field
-                v-model="password"
+                v-model="form.password"
                 :append-icon="form.show ? 'mdi-eye' : 'mdi-eye-off'"
                 solo
                 :type="form.show ? 'text' : 'password'"
@@ -45,6 +45,7 @@
                 x-large
                 color="success"
                 class="btn"
+                @click="loginUser"
               >
                 ログイン
               </v-btn>
@@ -58,10 +59,15 @@
 
 <script>
 export default {
+  middleware ({ store, redirect }) {
+    if (store.state.auth.loggedIn) {
+      return redirect('/admin')
+    }
+  },
   data () {
     return {
       form: {
-        email: '',
+        username: '',
         password: '',
         show: false
       }
@@ -69,6 +75,22 @@ export default {
   },
   head: {
     title: 'ログイン'
+  },
+  methods: {
+    async loginUser () {
+      await this.$auth.loginWith('local', {
+        data: {
+          username: this.form.username,
+          password: this.form.password
+        }
+      }).then(() => {
+        this.$toast.success('Logged In!')
+        location.reload()
+      }).catch(() => {
+        location.reload()
+        this.$auth.logout()
+      })
+    }
   }
 }
 </script>

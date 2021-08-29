@@ -213,7 +213,7 @@ export default {
   },
   async created () {
     try {
-      await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
+      await this.$axios.get('api/sitelikes/').then((response) => {
         this.counter = response.data.counter
       })
     } catch (err) {
@@ -224,12 +224,8 @@ export default {
   methods: {
     async clickHeart () {
       try {
-        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
-          this.counter = response.data.counter
-        })
-        await this.$axios.$post(
-          this.$axios.defaults.baseURL + 'api/sitelikes/', null)
-        await this.$axios.get(this.$axios.defaults.baseURL + 'api/sitelikes/').then((response) => {
+        await this.$axios.$post('api/sitelikes/', null)
+        await this.$axios.get('api/sitelikes/').then((response) => {
           this.counter = response.data.counter
         })
       } catch (err) {

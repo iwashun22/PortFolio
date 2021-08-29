@@ -1,7 +1,7 @@
-from rest_auth.serializers import LoginSerializer as RestAuthLoginSerializer
 from rest_framework import serializers
-from .models import SiteLikes, Career, Tag
 
+from .models import SiteLikes, Career, Tag
+from django.contrib.auth.models import User
 
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,3 +30,12 @@ class CareerSerializer(serializers.ModelSerializer):
             "updated_at",
         )
         depth = 1
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "username",
+            "password"
+        )
