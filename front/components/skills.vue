@@ -15,7 +15,6 @@
 }
 
 .title {
-  border-bottom: solid 3px white;
   width: fit-content;
   padding: 6px 20px;
   margin: 30px 30px 0 30px !important;
