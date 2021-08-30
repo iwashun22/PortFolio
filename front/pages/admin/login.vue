@@ -17,15 +17,29 @@
       <v-row>
         <v-col
           cols="10"
+          pb="3"
+        >
+          <v-alert
+            dismissible
+            type="error"
+            elevation="3"
+          >
+            管理者ページ
+          </v-alert>
+        </v-col>
+        <v-col
+          cols="10"
         >
           <v-text-field
             v-model="form.username"
-            outlined
+            :rules="[rules.required]"
+            hint="メール"
             prepend-inner-icon="mdi-email"
             placeholder="example@example.com"
             autocomplete="off"
             autofocus
             required
+            outlined
           />
         </v-col>
         <v-col
@@ -35,12 +49,15 @@
             v-model="form.password"
             :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
             :type="form.passwordShow ? 'text' : 'password'"
+            :prepend-inner-icon=" form.focus ? 'mdi-lock-open' : 'mdi-lock'"
+            :rules="[rules.required]"
+            hint="パスワード"
             outlined
-            prepend-inner-icon="mdi-lock"
             placeholder="パスワード"
-            autofocus
             autocomplete="off"
             required
+            @focus="form.focus = true"
+            @blur="form.focus = false"
             @click:append="form.passwordShow = !form.passwordShow"
           />
         </v-col>
@@ -58,8 +75,42 @@
             ログイン
           </v-btn>
         </v-col>
+        <v-col
+          cols="10"
+          class="divider"
+        >
+          <p
+            @click="snackbar = true"
+          >
+            これはなんですか？
+          </p>
+        </v-col>
       </v-row>
     </v-card>
+    <v-snackbar
+      v-model="snackbar"
+    >
+      これは管理の画面にためのログイン画面です<br>
+      <b>登録はできません</b><br>
+      何かあれば
+      <Nuxt-Link to="/contact/">
+        お問い合わせ
+      </Nuxt-Link>
+      ください
+
+      <template
+        #action="{ attrs }"
+      >
+        <v-btn
+          text
+          v-bind="attrs"
+          class="snackbar-btn"
+          @click="snackbar = false"
+        >
+          閉じる
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -75,8 +126,13 @@ export default {
       form: {
         username: '',
         password: '',
-        passwordShow: false
-      }
+        passwordShow: false,
+        focus: false
+      },
+      rules: {
+        required: value => !!value || '必須項目です'
+      },
+      snackbar: false
     }
   },
   head: {
@@ -116,12 +172,15 @@ export default {
     width: 100%;
     display: flex;
     margin: 0 auto;
-    padding: 30px 0 60px 0;
+    padding: 30px 0 40px 0;
     max-width: 520px;
     flex-direction: column;
 
     .row {
       justify-content: center;
+      width: 100% !important;
+      margin: 0 auto;
+      max-width: 500px;
     }
 
     .col {
@@ -145,10 +204,33 @@ export default {
       }
     }
 
+    .v-alert {
+      background-color: #dd2c00 !important;
+      margin: 30px 0;
+
+      .v-alert__wrapper {
+        align-items: center;
+        border-radius: inherit;
+        display: flex;
+
+        .mdi-alert {
+          margin-right: 20px;
+        }
+
+        .v-alert__content {
+          flex: 1 1 auto;
+        }
+      }
+    }
+
     .v-input {
       .v-input__control {
         .v-input__slot {
-          .primary--text {
+          color: #1976d2;
+
+          .primary--text.mdi-email,
+          .primary--text.mdi-lock,
+          .primary--text.mdi-lock-open {
             color: #1976d2 !important;
           }
 
@@ -158,6 +240,41 @@ export default {
         }
       }
     }
+
+    .error--text.mdi-lock,
+    .error--text.mdi-lock-open,
+    .error--text.mdi-email {
+      color: #dd2c00 !important;
+    }
+
+    .v-snack__wrapper {
+      padding: 20px !important;
+
+      .snackbar-btn {
+        padding-right: 10px;
+      }
+    }
+
+    .divider {
+      margin-top: 15px;
+      font-size: 80%;
+      color: #ddd;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .v-snack__action {
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .login-case {
+    margin-top: 78px !important;
   }
 }
 </style>
