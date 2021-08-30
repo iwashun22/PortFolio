@@ -1,23 +1,9 @@
 [[package]]
-id = 3
-name = "mypy-extensions"
-version = "0.4.3"
-source = "pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json"
-dependencies = []
-
-[[package]]
-id = 18
-name = "Django"
-version = "3.2.6"
-source = "pypi+https://pypi.org/pypi/Django/3.2.6/json"
-dependencies = ["pytz 2016.2 pypi+https://pypi.org/pypi/pytz/2016.2/json", "sqlparse 0.4.1 pypi+https://pypi.org/pypi/sqlparse/0.4.1/json", "asgiref 3.4.1 pypi+https://pypi.org/pypi/asgiref/3.4.1/json"]
-
-[[package]]
-id = 8
-name = "click"
-version = "8.0.1"
-source = "pypi+https://pypi.org/pypi/click/8.0.1/json"
-dependencies = []
+id = 1
+name = "black"
+version = "21.7b0"
+source = "pypi+https://pypi.org/pypi/black/21.7b0/json"
+dependencies = ["mypy-extensions 0.4.3 pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json", "regex 2021.8.3 pypi+https://pypi.org/pypi/regex/2021.8.3/json", "appdirs 1.4.4 pypi+https://pypi.org/pypi/appdirs/1.4.4/json", "click 8.0.1 pypi+https://pypi.org/pypi/click/8.0.1/json", "tomli 1.2.1 pypi+https://pypi.org/pypi/tomli/1.2.1/json", "pathspec 0.9.0 pypi+https://pypi.org/pypi/pathspec/0.9.0/json", "typed-ast 1.4.3 pypi+https://pypi.org/pypi/typed-ast/1.4.3/json"]
 
 [[package]]
 id = 9
@@ -27,73 +13,17 @@ source = "pypi+https://pypi.org/pypi/django-filter/2.4.0/json"
 dependencies = []
 
 [[package]]
-id = 7
-name = "appdirs"
-version = "1.4.4"
-source = "pypi+https://pypi.org/pypi/appdirs/1.4.4/json"
+id = 11
+name = "sqlparse"
+version = "0.4.1"
+source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
 dependencies = []
 
 [[package]]
-id = 12
-name = "pytz"
-version = "2016.2"
-source = "pypi+https://pypi.org/pypi/pytz/2016.2/json"
-dependencies = []
-
-[[package]]
-id = 14
-name = "djangorestframework"
-version = "3.12.2"
-source = "pypi+https://pypi.org/pypi/djangorestframework/3.12.2/json"
-dependencies = []
-
-[[package]]
-id = 6
-name = "tomli"
-version = "1.2.1"
-source = "pypi+https://pypi.org/pypi/tomli/1.2.1/json"
-dependencies = []
-
-[[package]]
-id = 5
-name = "regex"
-version = "2021.8.3"
-source = "pypi+https://pypi.org/pypi/regex/2021.8.3/json"
-dependencies = []
-
-[[package]]
-id = 13
-name = "asgiref"
-version = "3.4.1"
-source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
-dependencies = []
-
-[[package]]
-id = 1
-name = "black"
-version = "21.7b0"
-source = "pypi+https://pypi.org/pypi/black/21.7b0/json"
-dependencies = ["mypy-extensions 0.4.3 pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json", "regex 2021.8.3 pypi+https://pypi.org/pypi/regex/2021.8.3/json", "appdirs 1.4.4 pypi+https://pypi.org/pypi/appdirs/1.4.4/json", "click 8.0.1 pypi+https://pypi.org/pypi/click/8.0.1/json", "tomli 1.2.1 pypi+https://pypi.org/pypi/tomli/1.2.1/json", "pathspec 0.9.0 pypi+https://pypi.org/pypi/pathspec/0.9.0/json", "typed-ast 1.4.3 pypi+https://pypi.org/pypi/typed-ast/1.4.3/json"]
-
-[[package]]
-id = 2
-name = "typed-ast"
-version = "1.4.3"
-source = "pypi+https://pypi.org/pypi/typed-ast/1.4.3/json"
-dependencies = []
-
-[[package]]
-id = 17
-name = "colorama"
-version = "0.4.4"
-source = "pypi+https://pypi.org/pypi/colorama/0.4.4/json"
-dependencies = []
-
-[[package]]
-id = 4
-name = "pathspec"
-version = "0.9.0"
-source = "pypi+https://pypi.org/pypi/pathspec/0.9.0/json"
+id = 8
+name = "click"
+version = "8.0.1"
+source = "pypi+https://pypi.org/pypi/click/8.0.1/json"
 dependencies = []
 
 [[package]]
@@ -104,10 +34,80 @@ source = "pypi+https://pypi.org/pypi/django-cors-headers/3.8.0/json"
 dependencies = []
 
 [[package]]
-id = 11
-name = "sqlparse"
-version = "0.4.1"
-source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
+id = 6
+name = "tomli"
+version = "1.2.1"
+source = "pypi+https://pypi.org/pypi/tomli/1.2.1/json"
 dependencies = []
+
+[[package]]
+id = 4
+name = "pathspec"
+version = "0.9.0"
+source = "pypi+https://pypi.org/pypi/pathspec/0.9.0/json"
+dependencies = []
+
+[[package]]
+id = 7
+name = "appdirs"
+version = "1.4.4"
+source = "pypi+https://pypi.org/pypi/appdirs/1.4.4/json"
+dependencies = []
+
+[[package]]
+id = 13
+name = "asgiref"
+version = "3.4.1"
+source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
+dependencies = []
+
+[[package]]
+id = 17
+name = "colorama"
+version = "0.4.4"
+source = "pypi+https://pypi.org/pypi/colorama/0.4.4/json"
+dependencies = []
+
+[[package]]
+id = 5
+name = "regex"
+version = "2021.8.3"
+source = "pypi+https://pypi.org/pypi/regex/2021.8.3/json"
+dependencies = []
+
+[[package]]
+id = 2
+name = "typed-ast"
+version = "1.4.3"
+source = "pypi+https://pypi.org/pypi/typed-ast/1.4.3/json"
+dependencies = []
+
+[[package]]
+id = 14
+name = "djangorestframework"
+version = "3.12.2"
+source = "pypi+https://pypi.org/pypi/djangorestframework/3.12.2/json"
+dependencies = []
+
+[[package]]
+id = 3
+name = "mypy-extensions"
+version = "0.4.3"
+source = "pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json"
+dependencies = []
+
+[[package]]
+id = 12
+name = "pytz"
+version = "2016.2"
+source = "pypi+https://pypi.org/pypi/pytz/2016.2/json"
+dependencies = []
+
+[[package]]
+id = 18
+name = "Django"
+version = "3.2.6"
+source = "pypi+https://pypi.org/pypi/Django/3.2.6/json"
+dependencies = ["pytz 2016.2 pypi+https://pypi.org/pypi/pytz/2016.2/json", "sqlparse 0.4.1 pypi+https://pypi.org/pypi/sqlparse/0.4.1/json", "asgiref 3.4.1 pypi+https://pypi.org/pypi/asgiref/3.4.1/json"]
 
 [metadata]
