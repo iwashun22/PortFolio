@@ -1,5 +1,10 @@
 <template>
-  <h1>The login Success</h1>
+  <v-alert
+    type="error"
+    elevation="3"
+  >
+    管理者ページ
+  </v-alert>
 </template>
 
 <script>
