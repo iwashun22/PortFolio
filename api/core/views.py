@@ -137,9 +137,9 @@ class LoginView(viewsets.ViewSet):
     def list(self, request, format=None):
         return Response(data={
             'user': {
-                request.user.id,
-                request.user.username,
-                request.user.email
+                "id": request.user.id,
+                "username": request.user.username,
+                "email": request.user.email
             }
         },
             status=status.HTTP_200_OK)
