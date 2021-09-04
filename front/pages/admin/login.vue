@@ -17,18 +17,6 @@
       <v-row>
         <v-col
           cols="10"
-          pb="3"
-        >
-          <v-alert
-            dismissible
-            type="error"
-            elevation="3"
-          >
-            管理者ページ
-          </v-alert>
-        </v-col>
-        <v-col
-          cols="10"
         >
           <v-text-field
             v-model="form.username"
