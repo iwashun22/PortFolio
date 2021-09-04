@@ -135,27 +135,27 @@ export default {
         {
           icon: 'mdi-account-box',
           text: 'キャリア',
-          to: '/career'
+          to: '/career/'
         },
         {
           icon: 'mdi-star',
           text: '制作物',
-          to: '/created'
+          to: '/created/'
         },
         {
           icon: 'mdi-fountain-pen',
           text: 'ブログ',
-          to: '/blog'
+          to: '/blog/'
         },
         {
           icon: 'mdi-bell-ring',
           text: 'お知らせ',
-          to: '/notification'
+          to: '/notification/'
         },
         {
           icon: 'mdi-alert-circle',
           text: 'お問い合わせ',
-          to: '/contact'
+          to: '/contact/'
         }
       ],
       links: [

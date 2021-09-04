@@ -19,7 +19,6 @@
 
 <style lang="scss" scoped>
 .title {
-  border-bottom: solid 3px white;
   width: fit-content;
   padding: 6px 20px;
   margin: 0 30px;

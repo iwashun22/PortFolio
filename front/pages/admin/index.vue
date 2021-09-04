@@ -1,10 +1,5 @@
 <template>
-  <v-alert
-    type="error"
-    elevation="3"
-  >
-    管理者ページ
-  </v-alert>
+  <h1>Dashboard</h1>
 </template>
 
 <script>
