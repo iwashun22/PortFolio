@@ -134,9 +134,11 @@ export default {
           password: this.form.password
         }
       }).then(() => {
-        location.reload()
+        this.$toast.success('ログインしました。')
+        this.$router.push('/admin')
       }).catch(() => {
-        location.reload()
+        this.$nuxt.$loading.finish()
+        this.$toast.show('失敗しました。')
         this.$auth.logout()
       })
     }

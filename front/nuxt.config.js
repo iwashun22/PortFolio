@@ -47,6 +47,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/toast',
     ['nuxt-log', {
       // optional : defaults to true if not specified
       isEnabled: true,
@@ -62,8 +63,15 @@ export default {
       separator: '|',
       // optional : defaults to false if not specified
       showConsoleColors: false
-    }],
+    }]
   ],
+
+  toast: {
+    // 右上にtoastを表示
+    position: 'top-right',
+    // 特に指定しなくても5秒で消えるように設定
+    duration: 5000
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -6,7 +6,12 @@ from django.contrib.auth.models import User
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteLikes
-        fields = ("__all__")
+        fields = (
+            "id",
+            "created_at",
+            "updated_at"
+        )
+        depth = 1
 
 
 class TagSerializer(serializers.ModelSerializer):

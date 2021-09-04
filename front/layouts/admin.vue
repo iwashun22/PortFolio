@@ -59,7 +59,10 @@
         dense
       >
         <v-list-item-group>
-          <v-list-item class="px-2">
+          <v-list-item
+            class="px-2"
+            to="/"
+          >
             <v-icon
               size="42"
               mt="6"
@@ -68,7 +71,9 @@
             </v-icon>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item
+            to="/account/settings"
+          >
             <v-list-item-content>
               <v-list-item-title class="text-h6">
                 {{ $auth.user.username }}

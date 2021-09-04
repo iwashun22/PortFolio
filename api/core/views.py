@@ -1,4 +1,5 @@
 import datetime
+from django.utils.timezone import make_aware
 
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -44,21 +45,22 @@ class LikesViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'])
     def get_like_each_days(self, request, pk=None):
-        Like = SiteLikes.objects
-        json = {}
+        Like = SiteLikes.objects.all()
         now = datetime.datetime.now()
+        json = {}
 
         if not request.query_params.get("days") is None:
             Days = int(request.query_params.get("days"))
 
             for i in range(Days):
-                past = now - datetime.timedelta(days = i)
-                one_json = Like.filter(created_at = past)
-                json.update(one_json)
-            
-            serializer = LikeSerializer(json, many=True)
+                past = now + datetime.timedelta(days = -i)
+                one_json = len(Like.filter(created_at__day = int(past.day)))
+                json.update({f"day{i + 1}": 
+                    one_json
+                })
+
             return Response(
-                serializer.data
+                json
             )
         else:
             serializer = LikeSerializer(json, many=True)
@@ -166,7 +168,7 @@ class SignInView(viewsets.ViewSet):
         user = authenticate(username=username, password=password)
 
         if user is None:
-            return Response({'result': 'credential is not valid'})
+            return Response({'result': 'credential is not valid'}, status=400)
         try:
             # クライアントにセットするためtokenを出力する
             token = Token.objects.get(user=user.id)
