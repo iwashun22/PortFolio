@@ -134,7 +134,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px auto 0 auto;
+  margin: 30px 10px 0 10px;
 
   .v-card {
     margin: 14px 0 0 0;

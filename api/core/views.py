@@ -1,16 +1,13 @@
-from rest_framework import viewsets, generics
+import datetime
+
+from rest_framework import viewsets
 from rest_framework.decorators import action
-from django.http import Http404
-from django.db import transaction
-from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import status, authentication
 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from time import timezone
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -44,6 +41,56 @@ class LikesViewSet(viewsets.ViewSet):
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+    @action(detail=False, methods=['get'])
+    def get_like_each_days(self, request, pk=None):
+        Like = SiteLikes.objects
+        json = {}
+        now = datetime.datetime.now()
+
+        if not request.query_params.get("days") is None:
+            Days = int(request.query_params.get("days"))
+
+            for i in range(Days):
+                past = now - datetime.timedelta(days = i)
+                one_json = Like.filter(created_at = past)
+                json.update(one_json)
+            
+            serializer = LikeSerializer(json, many=True)
+            return Response(
+                serializer.data
+            )
+        else:
+            serializer = LikeSerializer(json, many=True)
+            return Response(
+                "You should to add query to url"
+            , status=400)
+
+    @action(detail=False, methods=['get'])
+    def get_like(self, request, pk=None):
+        json = SiteLikes.objects
+
+        Year = request.query_params.get("year")
+        Month = request.query_params.get("month")
+        Day = request.query_params.get("day")
+        Minus = request.query_params.get("minus")
+
+        if not Minus is None:
+            date = datetime.datetime.now()
+            data = (date + datetime.timedelta(days = -(int(Minus))))
+            json = json.filter(created_at__gte = data)
+        else:
+            if not Year is None:
+                json = json.filter(created_at__year = Year)
+            if not Month is None:
+                json = json.filter(created_at__month = Month)
+            if not Day is None:
+                json = json.filter(created_at__day = Day)
+        
+        serializer = LikeSerializer(json, many=True)
+        return Response({
+            "count": len(serializer.data),
+        })
 
 # TagモデルのAPI
 class TagViewSet(viewsets.ModelViewSet):
@@ -127,7 +174,6 @@ class SignInView(viewsets.ViewSet):
             return Response({'token': token.key})
         except:
             return Response({'result': 'token fail'}, status=400)
-
 
 class LoginView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
