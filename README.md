@@ -14,12 +14,6 @@
 
 # 基本的な開発ルール
 
-### Pythonファイルは必ずBlackを通す
-
-```bash
-$ pyflow black PythonファイルへのPath
-```
-
 ### Pythonファイル内で新しく関数を作った場合必ずその帰り値の値を書く
 
 ```python
@@ -39,37 +33,38 @@ def test():
 
 # Django環境構築方法
 
-### Pyflowをインストール
+## Pipenvの環境構築
+
+#### pipを最新バージョンにする
 
 ```bash
-$ brew install pyflow
+$ pip install --upgrade pip
 ```
 
-### ライブラリーをインストールする
+#### Pipenvをインストールする
 
 ```bash
-$ pyflow package
+$ pip install pipenv
 ```
 
-その後に1を選ぶ
+`pipenv`とターミナルもしくはコマンドプロンプトで打って何か出れば成功です
 
-### djangoサーバーを起動
+#### ライブラリーをインストール
 
 ```bash
-$ pyflow manage.py migrate
-$ pyflow manage.py runserver
+$ pipenv install
 ```
 
-### Pythonファイルをフォーマットする方法(Black)
+#### Djangoサーバーを起動
 
 ```bash
-$ pyflow black PythonファイルへのPath
+# cd backend
+$ pipenv run python manage.py runserver
 ```
 
 ### Python or Djangoのコマンドを使う時
-
 ```bash
-$ pyflow そのコマンド
+$ pipenv run python manage.py
 ```
 
 # Nuxt.jsとVuetify.jsインストール

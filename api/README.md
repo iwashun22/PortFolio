@@ -1,29 +1,35 @@
 # Django環境構築方法
 
-### Pyflowをインストール
+## Pipenvの環境構築
+
+#### pipを最新バージョンにする
+
 ```bash
-$ brew install pyflow
+$ pip install --upgrade pip
 ```
 
-### ライブラリーをインストールする
-```bash
-$ pyflow package
-```
-その後に1を選ぶ
+#### Pipenvをインストールする
 
-
-### djangoサーバーを起動
 ```bash
-$ pyflow manage.py migrate
-$ pyflow manage.py runserver
+$ pip install pipenv
 ```
 
-### Pythonファイルをフォーマットする方法(Black)
+`pipenv`とターミナルもしくはコマンドプロンプトで打って何か出れば成功です
+
+#### ライブラリーをインストール
+
 ```bash
-$ pyflow black PythonファイルへのPath
+$ pipenv install
+```
+
+#### Djangoサーバーを起動
+
+```bash
+# cd backend
+$ pipenv run python manage.py runserver
 ```
 
 ### Python or Djangoのコマンドを使う時
 ```bash
-$ pyflow そのコマンド
+$ pipenv run python manage.py
 ```
