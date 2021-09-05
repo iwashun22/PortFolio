@@ -176,7 +176,7 @@ class SignInView(viewsets.ViewSet):
 
                 date = datetime.datetime.now()
                 one_hour_data = make_aware(date + datetime.timedelta(hours=-1))
-                if len(TheLog) != 0 and TheLog[::-1][0].locked:
+                if len(TheLog) != 0 and TheLog[::-1][0].locked and TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
                     if TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
                         return Response(
                             {'result': 'The account is locked now. Try Later.'}, status=400)
@@ -208,24 +208,21 @@ class SignInView(viewsets.ViewSet):
             else:
                 return Response({'result': 'credential is not valid'}, status=400)
 
-        try:
-            # クライアントにセットするためtokenを出力する
-            now = make_aware(datetime.datetime.now())
-            token = Token.objects.get(user=user.id)
-            login_log = LoginLogging.objects
-            TheLog = login_log.filter(login_user_id=user.id)
+        # クライアントにセットするためtokenを出力する
+        now = make_aware(datetime.datetime.now())
+        token = Token.objects.get(user=user.id)
+        login_log = LoginLogging.objects
+        TheLog = login_log.filter(login_user_id=user.id)
 
-            if len(TheLog) != 0 and TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
-                return Response(
-                    {'result': 'The account is locked now. Try Later.'}, status=400)
-            if token.created + datetime.timedelta(days=1) < now:
-                return Response({'token': "Old token. please login one more"})
-            token.delete()
-            token = Token.objects.create(user=user)
-            login(request, user)
-            return Response({'token': token.key})
-        except:
-            return Response({'result': 'token fail'}, status=400)
+        if len(TheLog) != 0 and TheLog[::-1][0].locked and TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
+            return Response(
+                {'result': 'The account is locked now. Try Later.'}, status=400)
+        if token.created + datetime.timedelta(days=1) < now:
+            return Response({'token': "Old token. please login one more"})
+        token.delete()
+        token = Token.objects.create(user=user)
+        login(request, user)
+        return Response({'token': token.key})
 
 class LoginView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
