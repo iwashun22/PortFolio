@@ -14,7 +14,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .serializers import LikeSerializer, CareerSerializer, TagSerializer, UserSerializer
-from .models import SiteLikes, Career, Tag
+from .models import SiteLikes, Career, Tag, LoginLogging
 
 authentication.TokenAuthentication.keyword = 'Bearer'
 
@@ -169,12 +169,55 @@ class SignInView(viewsets.ViewSet):
 
         if user is None:
             if get_object_or_404(User, username=username):
-                print("Oh no")
-            return Response({'result': 'credential is not valid'}, status=400)
+                user = User.objects.get(username = username)
+                login_log = LoginLogging.objects
+                now = make_aware(datetime.datetime.now())
+                TheLog = login_log.filter(login_user_id = user.id)
+
+                date = datetime.datetime.now()
+                one_hour_data = make_aware(date + datetime.timedelta(hours=-1))
+                if len(TheLog) != 0 and TheLog[::-1][0].locked:
+                    if TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
+                        return Response(
+                            {'result': 'The account is locked now. Try Later.'}, status=400)
+                    else:
+                        return Response(
+                            {'result': 'credential is not valid'}, status=400)
+                elif len(TheLog) != 0 and len(TheLog.filter(login_at__gte=one_hour_data)) >= 12:
+                    log = LoginLogging(
+                        login_at = make_aware(datetime.datetime.now()),
+                        count = len(TheLog) + 1,
+                        locked = True,
+                        locked_at = make_aware(datetime.datetime.now()),
+                        login_user_id = user.id
+                    )
+                    log.save()
+                    return Response(
+                        {'result': 'The account was locked, Because many login requests.'}, status=400)
+                else:
+                    log = LoginLogging(
+                        login_at = make_aware(datetime.datetime.now()),
+                        count = len(TheLog.filter(login_at__gte=one_hour_data)) + 1,
+                        locked = False,
+                        login_user_id = user.id
+                    )
+                    log.save()
+                    print(len(TheLog.filter(login_at__gte=one_hour_data)))
+                    return Response(
+                        {'result': 'credential is not valid'}, status=400)
+            else:
+                return Response({'result': 'credential is not valid'}, status=400)
+
         try:
             # クライアントにセットするためtokenを出力する
             now = make_aware(datetime.datetime.now())
             token = Token.objects.get(user=user.id)
+            login_log = LoginLogging.objects
+            TheLog = login_log.filter(login_user_id=user.id)
+
+            if len(TheLog) != 0 and TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
+                return Response(
+                    {'result': 'The account is locked now. Try Later.'}, status=400)
             if token.created + datetime.timedelta(days=1) < now:
                 return Response({'token': "Old token. please login one more"})
             token.delete()
@@ -182,7 +225,7 @@ class SignInView(viewsets.ViewSet):
             login(request, user)
             return Response({'token': token.key})
         except:
-            return Response({'result': 'token fail'}, status=80040216)
+            return Response({'result': 'token fail'}, status=400)
 
 class LoginView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]

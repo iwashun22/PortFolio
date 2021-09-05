@@ -40,11 +40,11 @@ class TagsCareer(models.Model):
         return self.tag.name
 
 class LoginLogging(models.Model):
-    login_at = models.DateField()
+    login_at = models.DateTimeField()
     login_user = models.ForeignKey(User, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
     locked = models.BooleanField(default=False)
-    locked_at = models.DateField(blank=True, null=True)
+    locked_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
