@@ -44,6 +44,7 @@ class LoginLogging(models.Model):
     login_user = models.ForeignKey(User, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
     locked = models.BooleanField(default=False)
+    locked_at = models.DateField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
