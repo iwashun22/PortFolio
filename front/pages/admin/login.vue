@@ -145,6 +145,10 @@ export default {
         this.$nuxt.$loading.finish()
         if (error.response.data.result === 'credential is not valid') {
           this.$toast.error('パスワードまたはメールが間違っています。')
+        } else if (error.response.data.result === 'The account was locked, Because many login requests.') {
+          this.$toast.error('アカウントがロックされました。')
+        } else if (error.response.data.result === 'The account is locked now. Try Later.') {
+          this.$toast.error('アカウントがロックされています。')
         } else {
           this.$toast.error('不明なエラーです。')
         }
