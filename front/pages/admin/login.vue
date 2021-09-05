@@ -14,66 +14,68 @@
           管理画面にログイン
         </h4>
       </v-card-title>
-      <v-row>
-        <v-col
-          cols="10"
-        >
-          <v-text-field
-            v-model="form.username"
-            :rules="[rules.required]"
-            hint="メール"
-            prepend-inner-icon="mdi-email"
-            placeholder="example@example.com"
-            autocomplete="off"
-            autofocus
-            required
-            outlined
-          />
-        </v-col>
-        <v-col
-          cols="10"
-        >
-          <v-text-field
-            v-model="form.password"
-            :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="form.passwordShow ? 'text' : 'password'"
-            :prepend-inner-icon=" form.focus ? 'mdi-lock-open' : 'mdi-lock'"
-            :rules="[rules.required]"
-            hint="パスワード"
-            outlined
-            placeholder="パスワード"
-            autocomplete="off"
-            required
-            @focus="form.focus = true"
-            @blur="form.focus = false"
-            @click:append="form.passwordShow = !form.passwordShow"
-          />
-        </v-col>
-        <v-col
-          cols="10"
-          class="login-btn"
-        >
-          <v-btn
-            tile
-            block
-            x-large
-            color="primary"
-            @click="loginUser"
+      <v-form>
+        <v-row>
+          <v-col
+            cols="10"
           >
-            ログイン
-          </v-btn>
-        </v-col>
-        <v-col
-          cols="10"
-          class="divider"
-        >
-          <p
-            @click="snackbar = true"
+            <v-text-field
+              v-model="form.username"
+              :rules="[rules.required]"
+              hint="メール"
+              prepend-inner-icon="mdi-email"
+              placeholder="example@example.com"
+              autocomplete="off"
+              autofocus
+              required
+              outlined
+            />
+          </v-col>
+          <v-col
+            cols="10"
           >
-            これはなんですか？
-          </p>
-        </v-col>
-      </v-row>
+            <v-text-field
+              v-model="form.password"
+              :append-icon="form.passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="form.passwordShow ? 'text' : 'password'"
+              :prepend-inner-icon=" form.focus ? 'mdi-lock-open' : 'mdi-lock'"
+              :rules="[rules.required]"
+              hint="パスワード"
+              outlined
+              placeholder="パスワード"
+              autocomplete="off"
+              required
+              @focus="form.focus = true"
+              @blur="form.focus = false"
+              @click:append="form.passwordShow = !form.passwordShow"
+            />
+          </v-col>
+          <v-col
+            cols="10"
+            class="login-btn"
+          >
+            <v-btn
+              tile
+              block
+              x-large
+              color="primary"
+              @click="loginUser"
+            >
+              ログイン
+            </v-btn>
+          </v-col>
+          <v-col
+            cols="10"
+            class="divider"
+          >
+            <p
+              @click="snackbar = true"
+            >
+              これはなんですか？
+            </p>
+          </v-col>
+        </v-row>
+      </v-form>
     </v-card>
     <v-snackbar
       v-model="snackbar"
@@ -81,7 +83,10 @@
       これは管理の画面にためのログイン画面です<br>
       <b>登録はできません</b><br>
       何かあれば
-      <Nuxt-Link to="/contact/">
+      <Nuxt-Link
+        class="contact-link"
+        to="/contact/"
+      >
         お問い合わせ
       </Nuxt-Link>
       ください
@@ -136,9 +141,13 @@ export default {
       }).then(() => {
         this.$toast.success('ログインしました。')
         this.$router.push('/admin')
-      }).catch(() => {
+      }).catch((error) => {
         this.$nuxt.$loading.finish()
-        this.$toast.show('失敗しました。')
+        if (error.response.data.result === 'credential is not valid') {
+          this.$toast.error('パスワードまたはメールが間違っています。')
+        } else {
+          this.$toast.error('不明なエラーです。')
+        }
         this.$auth.logout()
       })
     }

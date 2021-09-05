@@ -89,6 +89,11 @@ export default {
       property: 'username',
     },
     localStorage: false,
+    refreshToken: {
+      property: 'refresh_token',
+      data: 'refresh_token',
+      maxAge: 60 * 60 * 24 * 1
+    },
     strategies: {
       local: {
         token: {

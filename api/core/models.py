@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class SiteLikes(models.Model):
@@ -37,3 +38,14 @@ class TagsCareer(models.Model):
 
     def __str__(self):
         return self.tag.name
+
+class LoginLogging(models.Model):
+    login_at = models.DateField()
+    login_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+    locked = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.login_at)

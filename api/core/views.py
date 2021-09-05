@@ -168,14 +168,21 @@ class SignInView(viewsets.ViewSet):
         user = authenticate(username=username, password=password)
 
         if user is None:
+            if get_object_or_404(User, username=username):
+                print("Oh no")
             return Response({'result': 'credential is not valid'}, status=400)
         try:
             # クライアントにセットするためtokenを出力する
+            now = make_aware(datetime.datetime.now())
             token = Token.objects.get(user=user.id)
+            if token.created + datetime.timedelta(days=1) < now:
+                return Response({'token': "Old token. please login one more"})
+            token.delete()
+            token = Token.objects.create(user=user)
             login(request, user)
             return Response({'token': token.key})
         except:
-            return Response({'result': 'token fail'}, status=400)
+            return Response({'result': 'token fail'}, status=80040216)
 
 class LoginView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
