@@ -215,7 +215,6 @@ class SignInView(viewsets.ViewSet):
             else:
                 return Response({'result': 'credential is not valid'}, status=400)
 
-        # クライアントにセットするためtokenを出力する
         try:
             now = make_aware(datetime.datetime.now())
             if Token.objects.filter(user=user.id).exists():
