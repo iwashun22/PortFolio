@@ -55,9 +55,14 @@ class LikesViewSet(viewsets.ViewSet):
             for i in range(Days):
                 past = now + datetime.timedelta(days = -i)
                 one_json = len(Like.filter(created_at__day = int(past.day)))
-                json.update({f"day{i + 1}": 
-                    one_json
-                })
+                json.update({f"day{i + 1}": {
+                    "data": {
+                        "year": past.year,
+                        "month": past.month,
+                        "day": past.day
+                    },
+                    "likes": one_json
+                }})
 
             return Response(
                 json
