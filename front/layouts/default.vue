@@ -138,6 +138,11 @@ export default {
           to: '/career/'
         },
         {
+          icon: 'mdi-sword',
+          text: 'スキル',
+          to: '/skills/'
+        },
+        {
           icon: 'mdi-star',
           text: '制作物',
           to: '/created/'
@@ -184,6 +189,11 @@ export default {
         {
           name: 'キャリア',
           to: '/career'
+        },
+        {
+          icon: 'mdi-sword',
+          text: 'スキル',
+          to: '/skills/'
         },
         {
           name: '制作者',

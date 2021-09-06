@@ -144,7 +144,7 @@ export default {
           to: '/career/admin'
         },
         {
-          icon: 'mdi-card-account-details',
+          icon: 'mdi-sword',
           text: 'スキルを投稿',
           to: '/skills/admin'
         },
