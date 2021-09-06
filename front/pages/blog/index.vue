@@ -1,5 +1,7 @@
 <template>
-  <h1>blog</h1>
+  <h1 class="title">
+    blog
+  </h1>
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss">
-#__layout {
+.title {
   margin-top: 68px;
 }
 </style>

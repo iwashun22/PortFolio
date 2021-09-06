@@ -113,10 +113,6 @@ export default {
 </script>
 
 <style lang="scss">
-#__layout {
-  margin-top: 68px;
-}
-
 .loader {
   margin: 30px auto;
   color: white;
@@ -126,7 +122,7 @@ export default {
   width: 100%;
   max-width: 1080px;
   display: flex;
-  margin: 50px auto 0 auto;
+  margin: 118px auto 0 auto;
 
   .v-card {
     width: 100%;

@@ -97,7 +97,7 @@ export default {
     strategies: {
       local: {
         token: {
-          required: false,
+          required: true,
           type: " Token "
         },
         endpoints: {

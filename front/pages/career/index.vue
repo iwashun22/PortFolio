@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="case">
     <Career />
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-#__layout {
+.case {
   margin-top: 68px;
 }
 </style>

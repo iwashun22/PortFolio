@@ -213,21 +213,21 @@ class SignInView(viewsets.ViewSet):
         # クライアントにセットするためtokenを出力する
         try:
             now = make_aware(datetime.datetime.now())
-            token = Token.objects.get(user=user.id)
+            if Token.objects.filter(user=user.id).exists():
+                token = Token.objects.get(user=user.id)
             login_log = LoginLogging.objects
             TheLog = login_log.filter(login_user_id=user.id)
 
             if len(TheLog) != 0 and TheLog[::-1][0].locked and TheLog[::-1][0].locked_at + datetime.timedelta(days=1) > now:
                 return Response(
                     {'result': 'The account is locked now. Try Later.'}, status=400)
-            if token.created + datetime.timedelta(days=1) < now:
-                return Response({'token': "Old token. please login one more"})
-            token.delete()
+            if Token.objects.filter(user=user.id).exists():
+                token.delete()
             token = Token.objects.create(user=user)
             login(request, user)
             return Response({'token': token.key})
         except:
-            return Response({'result': "Token fail"}, status=400)
+            return Response({'result': 'Token Faild'})
 
 class LoginView(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
@@ -235,6 +235,11 @@ class LoginView(viewsets.ViewSet):
     queryset = User.objects.all()
 
     def list(self, request, format=None):
+        now = make_aware(datetime.datetime.now())
+        token = Token.objects.get(user=request.user.id)
+        if token.created + datetime.timedelta(days=1) < now:
+            return Response({'token': "Old token. please login one more"})
+
         return Response(data={
             'user': {
                 "id": request.user.id,

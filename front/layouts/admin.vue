@@ -135,33 +135,38 @@ export default {
         },
         {
           icon: 'mdi-fountain-pen',
-          text: 'ブログ',
+          text: 'ブログを投稿',
           to: '/blog/admin'
         },
         {
           icon: 'mdi-account-box',
-          text: 'キャリア',
+          text: 'キャリアを投稿',
           to: '/career/admin'
         },
         {
           icon: 'mdi-card-account-details',
-          text: 'スキル',
+          text: 'スキルを投稿',
           to: '/skills/admin'
         },
         {
           icon: 'mdi-star',
-          text: '制作物',
+          text: '制作物を投稿',
           to: '/created/admin'
         },
         {
           icon: 'mdi-bell-ring',
-          text: 'お知らせ',
+          text: 'お知らせ作成',
           to: '/notification/admin'
         },
         {
           icon: 'mdi-alert-circle',
           text: 'お問い合わせ',
           to: '/contact/admin'
+        },
+        {
+          icon: 'mdi-keyboard-backspace',
+          text: '管理画面を出る',
+          to: '/'
         }
       ]
     }
@@ -179,7 +184,7 @@ export default {
 }
 
 .main {
-  margin-left: 56px;
+  margin: 0 0 0 56px;
   min-height: 100vh;
 }
 

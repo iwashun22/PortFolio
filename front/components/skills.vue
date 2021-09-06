@@ -10,10 +10,6 @@
 </script>
 
 <style lang="scss">
-#__layout {
-  margin-top: 68px;
-}
-
 .title {
   width: fit-content;
   padding: 6px 20px;
@@ -25,7 +21,7 @@
 .case {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 68px auto;
   width: 100%;
   max-width: 980px;
 }

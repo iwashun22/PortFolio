@@ -160,16 +160,12 @@ export default {
 </script>
 
 <style lang="scss">
-#__layout {
-  margin-top: 68px;
-}
-
 .login-case {
   max-width: 500px;
   width: 100%;
   height: initial !important;
   display: flex;
-  margin: 120px auto;
+  margin: 188px auto;
 
   .v-card {
     width: 100%;
