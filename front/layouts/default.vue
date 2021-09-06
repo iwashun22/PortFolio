@@ -42,26 +42,25 @@
       width="80vw"
       dark
     >
-      <v-list flat>
+      <v-list
+        nav
+        dence
+      >
         <v-list-item-group
-          v-model="selectedItem"
+          v-for="(item, i) in items"
+          :key="i"
         >
-          <template
-            v-for="(item, i) in items"
+          <v-list-item
+            :key="i"
+            :to="item.to"
           >
-            <v-list-item
-              :key="i"
-              :to="item.to"
-            >
-              <v-list-item-icon>
-                <v-icon v-text="item.icon" />
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title v-text="item.text" />
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider v-if="i !== items.length - 1" :key="item.to" />
-          </template>
+            <v-list-item-icon>
+              <v-icon v-text="item.icon" />
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text" />
+            </v-list-item-content>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -191,8 +190,7 @@ export default {
           to: '/career'
         },
         {
-          icon: 'mdi-sword',
-          text: 'スキル',
+          name: 'スキル',
           to: '/skills/'
         },
         {
@@ -309,11 +307,6 @@ header {
   margin-right: 30px;
 }
 
-.blog-search {
-  max-width: 280px;
-  margin-right: 20px;
-}
-
 .v-navigation-drawer {
   max-width: 300px;
   border: none;
@@ -327,6 +320,7 @@ header {
       align-items: center;
       justify-content: space-between;
       text-align: center;
+      margin: 10px 10px !important;
     }
 
     .v-list-item__content,

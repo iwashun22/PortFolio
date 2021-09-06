@@ -21,7 +21,7 @@
 .case {
   display: flex;
   flex-direction: column;
-  margin: 68px auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 980px;
 }

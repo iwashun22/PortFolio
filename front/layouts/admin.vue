@@ -35,7 +35,14 @@
             :to="item.to"
           >
             <v-list-item-icon>
-              <v-icon>
+              <v-icon
+                v-if="item.text == '通知'"
+              >
+                {{ empy ? 'mdi-bell-outline' : 'mdi-bell' }}
+              </v-icon>
+              <v-icon
+                v-else
+              >
                 {{ item.icon }}
               </v-icon>
             </v-list-item-icon>
@@ -58,32 +65,27 @@
         nav
         dense
       >
-        <v-list-item-group>
-          <v-list-item
-            class="px-2"
-            to="/"
+        <v-list-item
+          class="px-2 main-nav-item-list"
+        >
+          <v-icon
+            size="42"
+            mt="6"
           >
-            <v-icon
-              size="42"
-              mt="6"
-            >
-              mdi-account
-            </v-icon>
-          </v-list-item>
+            mdi-account
+          </v-icon>
+        </v-list-item>
 
-          <v-list-item
-            to="/account/settings"
-          >
-            <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                {{ $auth.user.username }}
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ $auth.user.email }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              {{ $auth.user.username }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ $auth.user.email }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
 
       <v-list
@@ -97,9 +99,17 @@
             v-for="(link, ilink) in links"
             :key="ilink"
             :to="link.to"
+            class="main-nav-item-list"
           >
             <v-list-item-icon>
-              <v-icon>
+              <v-icon
+                v-if="link.text == '通知'"
+              >
+                {{ empy ? 'mdi-bell-outline' : 'mdi-bell' }}
+              </v-icon>
+              <v-icon
+                v-else
+              >
                 {{ link.icon }}
               </v-icon>
             </v-list-item-icon>
@@ -127,11 +137,21 @@ export default {
   data () {
     return {
       drawer: false,
+      noti: {},
       links: [
         {
           icon: 'mdi-view-dashboard',
           text: 'ダッシュボード',
           to: '/admin'
+        },
+        {
+          icon: 'mdi-wrench',
+          text: 'アカウント設定',
+          to: '/account/settings'
+        },
+        {
+          text: '通知',
+          to: '/account/notification'
         },
         {
           icon: 'mdi-fountain-pen',
@@ -170,6 +190,11 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    empy () {
+      return Object.keys(this.noti).length === 0
+    }
   }
 }
 </script>
@@ -188,21 +213,25 @@ export default {
   min-height: 100vh;
 }
 
-.v-navigation-drawer__content {
-  .v-list {
-    &-item {
-      padding: 0 8px !important;
-      margin: 5px 8px;
-      justify-content: center !important;
+.v-navigation-drawer {
+  max-width: 300px !important;
 
-      &--active {
-        * {
-          font-weight: bolder;
+  .v-navigation-drawer__content {
+    .v-list {
+      .main-nav-item-list {
+        padding: 0 8px !important;
+        margin: 5px 8px !important;
+        justify-content: center !important;
+
+        &--active {
+          * {
+            font-weight: bolder;
+          }
         }
-      }
 
-      &__icon {
-        margin-right: 0 !important;
+        &__icon {
+          margin-right: 0 !important;
+        }
       }
     }
   }

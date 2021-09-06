@@ -9,6 +9,9 @@ export default {
     if (!store.state.auth.loggedIn) {
       return redirect('/admin/login')
     }
+  },
+  head: {
+    title: 'アカウント設定'
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="case">
+    <div class="h-space" />
     <Career />
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
-.case {
-  margin-top: 68px;
+.h-space {
+  height: 68px;
+  width: 100%;
 }
 </style>
